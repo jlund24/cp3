@@ -1,0 +1,168 @@
+body {
+    width: 100%;
+    text-align: center;
+    
+}
+
+ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+#app {
+    text-align: center !important;
+}
+#main-container {
+    display: flex;
+    flex-flow: row nowrap;    
+}
+
+#notes-text-area {
+    width: 75%;
+    /* height: 75%; */
+    resize: none;
+    height: 75vh;
+}
+
+#output-area {
+    width: 25%;
+    height: 100%;
+    
+}
+
+#github_link {
+    display: flex;
+    flex-flow: row nowrap;
+    
+}
+
+.github_image{
+    max-height: 30px;
+
+}
+
+.title-priority-row {
+    display: flex;
+    flex-flow: row nowrap;
+    
+    align-items: center;
+    justify-content: space-between;
+}
+
+.metadata-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.metadata-row .todo-item-feature-container {
+    width: 33%;
+    
+}
+
+.todo-item-feature {
+    padding-right: 10px;
+    
+}
+
+#todo-preview .todo-item-title {
+    font-size: 14pt;
+    
+}
+
+#preview-title {
+    margin-top: 30px;
+    color: gray;
+}
+
+#master-list {
+    list-style-type:none;
+    
+}
+
+#master-list-title {
+    font-size: 16pt;
+    margin-top: 50px;
+}
+
+.todo-item {
+    border-style: solid;
+    border-width: 1px;
+    
+    border-color: #eeeeee;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+
+#preview {
+    margin-left: 25%;
+    
+}
+
+#todo-preview {
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#todo-input {
+    width: 50%;
+    min-width: 350px;
+    margin: 0 auto;
+}
+
+.todo-item-feature-container{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    
+    
+}
+
+.my-icon {
+    margin-right: 5px;
+}
+
+#site-title {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.in-list {
+    font-size: 10pt;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.actual-info {
+    margin-left: 10px;
+    
+    width: 100%;
+    
+}
+
+input[type=checkbox] {
+    transform: scale(1.25);
+    margin-right: 10px;
+}
+
+.in-list .todo-item-title {
+    font-size: 12pt;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  
+

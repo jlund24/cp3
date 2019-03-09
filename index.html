@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <title>Parse</title>
+</head>
+
+<body>
+  <h1 id="site-title">Regex To-do</h1>
+  
+  <div id="app">
+    
+    <form @submit.prevent="addItem">
+    
+        
+        <input type="text" class="form-control" id="todo-input" aria-describedby="emailHelp" placeholder="What would you like to do? (e.g. finish creative project @Today)" v-model="todo_input">
+        <small id="emailHelp" class="form-text text-muted"><strong>Cheatsheet:</strong> !priority @duedate +duration #tag</small>
+      
+    </form>
+    
+    
+        <div id="preview-title" v-show="parsedTitle.length != 0">Preview</div>
+        <div class="todo-item" id="todo-preview" v-show="parsedTitle.length != 0">
+          <div class="title-priority-row">
+            <div class="todo-item-title todo-item-feature">{{parsedTitle}}</div>
+            <div class="todo-item-feature-container">
+                <i class="fa fa-exclamation my-icon" aria-hidden="true" v-show="parsedPriority.length != 0"></i>
+                <div class="todo-item-priority todo-item-feature">{{parsedPriority}}</div>
+            </div>
+            
+          </div>
+          <div class="metadata-row" v-show="parsedDueDate.length != 0 || parsedDuration.length != 0 || parsedList.length != 0">
+              <div class="todo-item-feature-container">
+                  <i class="fa fa-calendar my-icon" aria-hidden="true" v-show="parsedDueDate.length != 0"></i>
+                  <div class="todo-item-due-date todo-item-feature" >{{parsedDueDate}}</div>
+              </div>
+              <div class="todo-item-feature-container">
+                  <i class="fa fa-hourglass my-icon" aria-hidden="true" v-show="parsedDuration.length != 0"></i>
+                  <div class="todo-item-duration todo-item-feature">{{parsedDuration}}</div>
+              </div>
+              <div class="todo-item-feature-container">
+                  <i class="fa fa-list my-icon" aria-hidden="true" v-show="parsedList.length != 0"></i>
+                  <div class="todo-item-list todo-item-feature">{{parsedList}}</div>
+              </div>
+              
+          </div>
+        </div>
+      
+        
+        <div id="master-list-title" v-show="filteredTodos.length != 0">List</div>
+        <ul id="master-list" v-show="todo_items.length != 0">
+            <li v-for="item in filteredTodos">
+              
+
+                <div class="todo-item in-list" v-show="item.title.length != 0">
+                  <input type="checkbox" v-model="item.completed">
+                  <div class="actual-info">
+                  <div class="title-priority-row">
+                      
+                      <div class="todo-item-title todo-item-feature">{{item.title}}</div>
+                      <div class="todo-item-feature-container">
+                          <i class="fa fa-exclamation my-icon" aria-hidden="true" v-show="item.priority.length != 0"></i>
+                          <div class="todo-item-priority todo-item-feature">{{item.priority}}</div>
+                      </div>
+                      
+                    </div>
+                    <div class="metadata-row" v-show="item.dueDate.length != 0 || item.duration.length != 0 || item.list.length != 0">
+                        <div class="todo-item-feature-container">
+                            <i class="fa fa-calendar my-icon" aria-hidden="true" v-show="item.dueDate.length != 0"></i>
+                            <div class="todo-item-due-date todo-item-feature" >{{item.dueDate}}</div>
+                        </div>
+                        <div class="todo-item-feature-container">
+                            <i class="fa fa-hourglass my-icon" aria-hidden="true" v-show="item.duration.length != 0"></i>
+                            <div class="todo-item-duration todo-item-feature">{{item.duration}}</div>
+                        </div>
+                        <div class="todo-item-feature-container">
+                            <i class="fa fa-list my-icon" aria-hidden="true" v-show="item.list.length != 0"></i>
+                            <div class="todo-item-list todo-item-feature">{{item.list}}</div>
+                        </div>
+                        
+                    </div>
+                  </div>
+                </div>  
+
+            </li>
+          </ul>
+      </div>
+
+  
+
+
+      
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+  
+  <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+<footer>
+  <a id="github_link" href="https://github.com/BYU-CS-260-Winter-2019/lab-3-jlund24">
+    <img class="github_image" src="images/GitHubMark.png"/>
+    <img class="github_image" src="images/GitHubLogo.png"/>
+    
+  </a>
+</footer>
+
+</html>
